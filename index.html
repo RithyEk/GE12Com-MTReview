@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GE12 Communication - Mid-term Grammar Review</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+            --secondary: #ec4899;
+            --bg-gradient-1: #4f46e5;
+            --bg-gradient-2: #9333ea;
+            --card-bg: #ffffff;
+            --text-main: #1e1b4b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 30px 20px; }
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            padding: 20px 16px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-in-out;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .main-container { border-radius: 28px; padding: 35px 45px; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .logo-area { font-size: 22px; margin: 0; }
+        }
+
+        .logo-icon {
+            background: var(--primary-light);
+            color: var(--primary);
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+        }
+
+        .meta-badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .meta-badges { width: auto; }
+        }
+
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid rgba(79, 70, 229, 0.15);
+        }
+
+        .badge-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid rgba(79, 70, 229, 0.15);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .badge-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .hero-section h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 8px 0 10px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-section p {
+            color: var(--text-light);
+            font-size: 14px;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 25px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .selection-card {
+            background: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 18px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .selection-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.12);
+        }
+
+        .card-icon-wrap {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 26px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .selection-card h3 {
+            font-size: 19px;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            color: var(--text-main);
+        }
+
+        .selection-card p {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .exercise-wrapper {
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 15px 12px;
+            margin-top: 12px;
+            max-height: 580px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        @media (min-width: 768px) {
+            .exercise-wrapper {
+                border-radius: 20px;
+                padding: 30px;
+                margin-top: 15px;
+                max-height: 620px;
+            }
+        }
+
+        .question-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+            text-align: left;
+        }
+
+        .question-text {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        @media (min-width: 768px) {
+            .question-text { font-size: 17px; }
+        }
+
+        select.exercise-select {
+            border: 2px solid var(--primary);
+            padding: 6px 10px;
+            font-size: 14px;
+            font-weight: 700;
+            outline: none;
+            background: var(--primary-light);
+            border-radius: 8px;
+            color: var(--primary);
+            margin: 4px 2px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(79, 70, 229, 0.1);
+            max-width: 100%;
+        }
+
+        input.exercise-input {
+            border: 2px solid var(--primary);
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 700;
+            outline: none;
+            background: var(--primary-light);
+            border-radius: 8px;
+            color: var(--primary);
+            margin: 6px 0 4px 0;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 6px rgba(79, 70, 229, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            input.exercise-input { width: 380px; }
+        }
+
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .mcq-option-btn {
+            background: #f8fafc;
+            border: 2px solid var(--border-color);
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mcq-option-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .mcq-option-btn.selected {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .mcq-option-btn.selected-correct {
+            background: #d1fae5 !important;
+            border-color: var(--success) !important;
+            color: #065f46 !important;
+        }
+
+        .mcq-option-btn.selected-incorrect {
+            background: #fee2e2 !important;
+            border-color: var(--error) !important;
+            color: #991b1b !important;
+        }
+
+        .sample-box {
+            background: #f5f3ff;
+            border-left: 4px solid var(--primary);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #31106e;
+            font-weight: 500;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .feedback-text {
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 8px;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 768px) {
+            .feedback-text { font-size: 15px; margin-top: 10px; }
+        }
+
+        .correct-fb { color: var(--success); }
+        .incorrect-fb { color: var(--error); }
+
+        .score-banner {
+            background: var(--primary-light);
+            border: 2px dashed var(--primary);
+            color: var(--primary);
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 18px;
+            display: none;
+            text-align: center;
+        }
+
+        .submit-btn-wrap {
+            text-align: center;
+            margin: 25px 0 10px 0;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .btn-secondary { width: auto; padding: 10px 20px; font-size: 15px; }
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    
+    <!-- Top Navigation Header -->
+    <div class="top-nav">
+        <a class="logo-area" onclick="navigateTo('main')">
+            <div class="logo-icon">🚀</div>
+            <span>GE12 Communication</span>
+        </a>
+        <div class="meta-badges">
+            <div class="badge">🏫 Level: GE12</div>
+            <div class="badge">📖 Mid-Term Review</div>
+            <button class="badge-btn" onclick="navigateTo('main')">🏠 Main Menu</button>
+        </div>
+    </div>
+
+    <!-- MAIN MENU -->
+    <div id="screen-main" class="screen">
+        <div class="hero-section">
+            <h1 style="font-size: 26px;">GE12 Communication Mid-Term Review</h1>
+            <p>Select your unit below. Practice unreal conditionals, articles, passive reporting verbs, emphatic 'do', and the subjunctive with instant feedback!</p>
+        </div>
+
+        <div class="cards-grid" id="unit-cards-grid"></div>
+    </div>
+
+    <!-- EXERCISE VIEW -->
+    <div id="screen-exercise" class="screen hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+            <h3 id="exercise-screen-title" style="margin:0; color: var(--primary); font-size: 18px;">Exercises</h3>
+            <button class="btn-secondary" onclick="navigateTo('main')">← Back to Main Menu</button>
+        </div>
+
+        <div id="score-banner" class="score-banner"></div>
+
+        <div class="exercise-wrapper" id="exercise-questions-container"></div>
+    </div>
+
+</div>
+
+<script>
+    const grammarDatabase = [
+        {
+            id: "unit6_lesson1",
+            name: "Unit 6 — Lesson 1: Unreal Conditionals (Continuous & Mixed Time Frames)",
+            desc: "Practice 2nd/3rd conditionals with continuous forms and mixed-time structures.",
+            exercises: [
+                {
+                    type: "mcq",
+                    title: "Exercise 1 — Choose the Correct Form",
+                    instruction: "Instruction: Choose the correct form of the verb in parentheses to complete each unreal conditional sentence.",
+                    sample: { 
+                        q: "Sample: If I [CHOICE] right now, I would be ready for the test tomorrow.", 
+                        options: ["were studying", "had studied"], 
+                        answer: "were studying", 
+                        explanation: "💡 <strong>Why?</strong> The time marker <em>'right now'</em> paired with a future result points to present unreal continuous." 
+                    },
+                    questions: [
+                        { q: "1. If Mark [CHOICE] piano right now, he would be ready for the concert next week.", options: ["was practicing", "were practicing", "had practiced"], ans: "were practicing", explanation: "💡 <strong>Explanation:</strong> Unreal present condition takes subjunctive <em>were practicing</em>." },
+                        { q: "2. If Sarah [CHOICE] enough money last year, she would be traveling in Europe right now.", options: ["had saved", "would have saved", "saved"], ans: "had saved", explanation: "💡 <strong>Explanation:</strong> Past condition affecting the present requires past perfect <em>had saved</em> (mixed conditional)." },
+                        { q: "3. If they [CHOICE] the earlier flight, they would be resting at the hotel now.", options: ["had taken", "would have taken", "took"], ans: "had taken", explanation: "💡 <strong>Explanation:</strong> Past condition with present result uses past perfect <em>had taken</em>." },
+                        { q: "4. If I [CHOICE] overtime last night, I would have gone to the party.", options: ["hadn't been working", "wouldn't have been working", "didn't work"], ans: "hadn't been working", explanation: "💡 <strong>Explanation:</strong> Past continuous unreal condition uses <em>hadn't been working</em>." },
+                        { q: "5. If Leo [CHOICE] so fast on the highway, he wouldn't have gotten a speeding ticket.", options: ["weren't driving", "hadn't driven", "didn't drive"], ans: "hadn't driven", explanation: "💡 <strong>Explanation:</strong> Past unreal condition uses past perfect <em>hadn't driven</em>." },
+                        { q: "6. If the weather [CHOICE] better today, we would be having a picnic in the park.", options: ["were", "had been", "would be"], ans: "were", explanation: "💡 <strong>Explanation:</strong> Present unreal state uses <em>were</em>." },
+                        { q: "7. If you [CHOICE] graphic design in college, you would be working as a designer now.", options: ["had studied", "would have studied", "studied"], ans: "had studied", explanation: "💡 <strong>Explanation:</strong> Past condition affecting present career takes past perfect <em>had studied</em>." },
+                        { q: "8. If she [CHOICE] through her alarm, she wouldn't be rushing to work right now.", options: ["hadn't been sleeping", "wouldn't have been sleeping", "didn't sleep"], ans: "hadn't been sleeping", explanation: "💡 <strong>Explanation:</strong> Past continuous action affecting present state uses <em>hadn't been sleeping</em>." },
+                        { q: "9. If David [CHOICE] French fluently, he would be living in Paris at the moment.", options: ["spoke", "had spoken", "would speak"], ans: "spoke", explanation: "💡 <strong>Explanation:</strong> Present unreal condition takes simple past <em>spoke</em>." },
+                        { q: "10. If the restaurant [CHOICE] our reservation yesterday, we wouldn't be waiting in this long line now.", options: ["had accepted", "would have accepted", "accepted"], ans: "had accepted", explanation: "💡 <strong>Explanation:</strong> Past action affecting present status uses past perfect <em>had accepted</em>." }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "unit6_lesson2",
+            name: "Unit 6 — Lesson 2: Unreal Conditionals (If it weren't for… / If only…)",
+            desc: "Practice expressing counterfactual conditions with 'If it weren't for' and 'If only'.",
+            exercises: [
+                {
+                    type: "dropdown",
+                    title: "Exercise 1 — Choose the Correct Expression",
+                    instruction: "Instruction: Select the correct expression that best completes each sentence.",
+                    sample: { 
+                        q: "Sample: [DROPDOWN] your help, we would still be at the airport.", 
+                        options: ["-- select --", "If it weren't for", "If it hadn't been for"], 
+                        answer: "If it weren't for" 
+                    },
+                    questions: [
+                        { q: "1. [DROPDOWN] your continuous support last month, our project would have failed completely.", options: ["-- select --", "If it weren't for", "If it hadn't been for"], ans: "If it hadn't been for", explanation: "💡 <strong>Explanation:</strong> Refers to a past time frame ('last month'), so <em>If it hadn't been for</em> is correct." },
+                        { q: "2. [DROPDOWN] a reliable laptop, I could finish my thesis much faster.", options: ["-- select --", "If only I had", "If only I would have"], ans: "If only I had", explanation: "💡 <strong>Explanation:</strong> Present unreal wish takes simple past <em>had</em>." },
+                        { q: "3. [DROPDOWN] the heavy traffic on the bridge right now, we would arrive on time.", options: ["-- select --", "If it weren't for", "If it hadn't been for"], ans: "If it weren't for", explanation: "💡 <strong>Explanation:</strong> Refers to the present ('right now'), requiring <em>If it weren't for</em>." },
+                        { q: "4. [DROPDOWN] her speech before the conference last week, she wouldn't have been so nervous.", options: ["-- select --", "If only she had practiced", "If only she practiced"], ans: "If only she had practiced", explanation: "💡 <strong>Explanation:</strong> Past unreal wish takes past perfect <em>had practiced</em>." },
+                        { q: "5. [DROPDOWN] the scholarship grant I received last semester, I couldn't have paid my tuition.", options: ["-- select --", "If it weren't for", "If it hadn't been for"], ans: "If it hadn't been for", explanation: "💡 <strong>Explanation:</strong> Past event ('last semester') takes <em>If it hadn't been for</em>." },
+                        { q: "6. [DROPDOWN] closer to the city center, we wouldn't have to commute for two hours every day.", options: ["-- select --", "If only we lived", "If only we had lived"], ans: "If only we lived", explanation: "💡 <strong>Explanation:</strong> Present state wish takes simple past <em>lived</em>." },
+                        { q: "7. [DROPDOWN] about the canceled meeting yesterday, I would have stayed home.", options: ["-- select --", "If only I had known", "If only I knew"], ans: "If only I had known", explanation: "💡 <strong>Explanation:</strong> Past regret takes past perfect <em>had known</em>." },
+                        { q: "8. [DROPDOWN] his medical condition, he would join us on the hiking trip this weekend.", options: ["-- select --", "If it weren't for", "If it hadn't been for"], ans: "If it weren't for", explanation: "💡 <strong>Explanation:</strong> Present state condition takes <em>If it weren't for</em>." },
+                        { q: "9. [DROPDOWN] his doctor's advice last year, his health wouldn't be poor now.", options: ["-- select --", "If only he took", "If only he had taken"], ans: "If only he had taken", explanation: "💡 <strong>Explanation:</strong> Past action affecting present state uses past perfect <em>had taken</em>." },
+                        { q: "10. [DROPDOWN] the loud construction next door, I could concentrate on my studies today.", options: ["-- select --", "If it weren't for", "If it hadn't been for"], ans: "If it weren't for", explanation: "💡 <strong>Explanation:</strong> Present condition takes <em>If it weren't for</em>." }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "unit7_lesson1",
+            name: "Unit 7 — Lesson 1: Articles (A / AN / THE / X)",
+            desc: "Practice definite, indefinite, and zero articles with common nouns and proper names.",
+            exercises: [
+                {
+                    type: "dropdown",
+                    title: "Exercise 1 — Complete with A, AN, THE, or X",
+                    instruction: "Instruction: Complete each sentence with a, an, the, or X if no article is needed.",
+                    sample: { 
+                        q: "Sample: My brother wants to become [DROPDOWN] doctor.", 
+                        options: ["-- select --", "a", "an", "the", "X"], 
+                        answer: "a" 
+                    },
+                    questions: [
+                        { q: "1. My uncle works as [DROPDOWN] software developer for an international tech firm.", options: ["-- select --", "a", "an", "the", "X"], ans: "a", explanation: "💡 <strong>Explanation:</strong> Singular countable noun starting with a consonant sound takes <em>a</em>." },
+                        { q: "2. We had [DROPDOWN] wonderful dinner at the new Italian restaurant downtown last night.", options: ["-- select --", "a", "an", "the", "X"], ans: "a", explanation: "💡 <strong>Explanation:</strong> Specific instance modified by an adjective takes <em>a</em>." },
+                        { q: "3. [DROPDOWN] science is becoming increasingly important in our modern technological world.", options: ["-- select --", "a", "an", "the", "X"], ans: "X", explanation: "💡 <strong>Explanation:</strong> General uncountable noun requires no article (<em>X</em>)." },
+                        { q: "4. Can you pass me [DROPDOWN] salt and pepper from the kitchen table, please?", options: ["-- select --", "a", "an", "the", "X"], ans: "the", explanation: "💡 <strong>Explanation:</strong> Specific shared items on the table take <em>the</em>." },
+                        { q: "5. She bought [DROPDOWN] expensive leather jacket while she was shopping in Paris.", options: ["-- select --", "a", "an", "the", "X"], ans: "an", explanation: "💡 <strong>Explanation:</strong> Singular countable noun starting with a vowel sound (<em>expensive</em>) takes <em>an</em>." },
+                        { q: "6. Mr. Henderson is looking for [DROPDOWN] honest and hard-working employee to join his team.", options: ["-- select --", "a", "an", "the", "X"], ans: "an", explanation: "💡 <strong>Explanation:</strong> 'Honest' starts with a vowel sound (/o/), so it takes <em>an</em>." },
+                        { q: "7. Do you usually eat [DROPDOWN] breakfast before you start your morning workout?", options: ["-- select --", "a", "an", "the", "X"], ans: "X", explanation: "💡 <strong>Explanation:</strong> Meals generally take no article (<em>X</em>)." },
+                        { q: "8. Mount Everest is [DROPDOWN] highest mountain peak in the world.", options: ["-- select --", "a", "an", "the", "X"], ans: "the", explanation: "💡 <strong>Explanation:</strong> Superlative adjectives take <em>the</em>." },
+                        { q: "9. My younger sister wants to learn how to play [DROPDOWN] guitar this summer.", options: ["-- select --", "a", "an", "the", "X"], ans: "the", explanation: "💡 <strong>Explanation:</strong> Musical instruments with the verb 'play' take <em>the</em>." },
+                        { q: "10. Thousands of tourists visit [DROPDOWN] Angkor Wat temple complex every single year.", options: ["-- select --", "a", "an", "the", "X"], ans: "X", explanation: "💡 <strong>Explanation:</strong> Proper names of temples/landmarks without pre-modifiers take no article (<em>X</em>)." }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "unit7_lesson2",
+            name: "Unit 7 — Lesson 2: Reporting Beliefs (Passive Reporting Verbs)",
+            desc: "Practice transforming active statements into Pattern 1 (It + passive verb + that) and Pattern 2 (Subject + passive verb + infinitive).",
+            exercises: [
+                {
+                    type: "writing",
+                    title: "Exercise 1 — Rewrite Using Pattern 1",
+                    instruction: "Instruction: Rewrite each sentence using: It + passive reporting verb + that + clause",
+                    sample: { 
+                        q: "Sample: People believe that some phobias are incurable.", 
+                        answer: "It is believed that some phobias are incurable", 
+                        explanation: "💡 <strong>Why?</strong> Active 'People believe' becomes passive 'It is believed that'." 
+                    },
+                    questions: [
+                        { q: "1. People believe that some phobias are incurable.", acceptable: ["it is believed that some phobias are incurable"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." },
+                        { q: "2. People say that the restaurant is excellent.", acceptable: ["it is said that the restaurant is excellent"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." },
+                        { q: "3. People reported that the driver was talking on his phone.", acceptable: ["it was reported that the driver was talking on his phone"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." },
+                        { q: "4. People expect that the government will lower taxes next fiscal year.", acceptable: ["it is expected that the government will lower taxes next fiscal year"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." },
+                        { q: "5. Experts believe that the global climate is changing at an alarming rate.", acceptable: ["it is believed that the global climate is changing at an alarming rate"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." },
+                        { q: "6. People say that the old mansion on the hill is filled with hidden treasures.", acceptable: ["it is said that the old mansion on the hill is filled with hidden treasures"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." },
+                        { q: "7. Analysts report that the tech company has doubled its market value.", acceptable: ["it is reported that the tech company has doubled its market value"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." },
+                        { q: "8. People believe that the man has been working there for years.", acceptable: ["it is believed that the man has been working there for years"], explanation: "💡 <strong>Explanation:</strong> Pattern 1 transformation." }
+                    ]
+                },
+                {
+                    type: "writing",
+                    title: "Exercise 2 — Rewrite Using Pattern 2",
+                    instruction: "Instruction: Rewrite the same sentences using: Subject + passive reporting verb + appropriate infinitive (to V₀, to be V-ing, to have V3, to have been V-ing).",
+                    sample: { 
+                        q: "Sample: People believe that some phobias are incurable.", 
+                        answer: "Some phobias are believed to be incurable", 
+                        explanation: "💡 <strong>Why?</strong> Subject moves to front + passive verb + 'to be'." 
+                    },
+                    questions: [
+                        { q: "1. People believe that some phobias are incurable.", acceptable: ["some phobias are believed to be incurable"], explanation: "💡 <strong>Explanation:</strong> Infinitive state takes <em>to be</em>." },
+                        { q: "2. People say that the restaurant is excellent.", acceptable: ["the restaurant is said to be excellent"], explanation: "💡 <strong>Explanation:</strong> Infinitive state takes <em>to be</em>." },
+                        { q: "3. People reported that the driver was talking on his phone.", acceptable: ["the driver was reported to have been talking on his phone"], explanation: "💡 <strong>Explanation:</strong> Past continuous action takes <em>to have been talking</em>." },
+                        { q: "4. People expect that the government will lower taxes next fiscal year.", acceptable: ["the government is expected to lower taxes next fiscal year"], explanation: "💡 <strong>Explanation:</strong> Future action takes <em>to lower</em>." },
+                        { q: "5. Experts believe that the global climate is changing at an alarming rate.", acceptable: ["the global climate is believed to be changing at an alarming rate"], explanation: "💡 <strong>Explanation:</strong> Present continuous action takes <em>to be changing</em>." },
+                        { q: "6. People say that the old mansion on the hill is filled with hidden treasures.", acceptable: ["the old mansion on the hill is said to be filled with hidden treasures"], explanation: "💡 <strong>Explanation:</strong> State takes <em>to be</em>." },
+                        { q: "7. Analysts report that the tech company has doubled its market value.", acceptable: ["the tech company is reported to have doubled its market value"], explanation: "💡 <strong>Explanation:</strong> Prior completed action takes <em>to have doubled</em>." },
+                        { q: "8. People believe that the man has been working there for years.", acceptable: ["the man is believed to have been working there for years"], explanation: "💡 <strong>Explanation:</strong> Continuing prior action takes <em>to have been working</em>." }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "unit8_lesson1",
+            name: "Unit 8 — Lesson 1: Emphatic 'DO'",
+            desc: "Practice adding emphatic stress using do, does, or did + base verb.",
+            exercises: [
+                {
+                    type: "writing",
+                    title: "Exercise 1 — Rewrite with Emphatic DO",
+                    instruction: "Instruction: Rewrite each sentence using do, does, or did + base verb to add emphasis without changing meaning.",
+                    sample: { 
+                        q: "Sample: She likes to dance.", 
+                        answer: "She does like to dance", 
+                        explanation: "💡 <strong>Why?</strong> Present tense third-person singular takes <em>does like</em>." 
+                    },
+                    questions: [
+                        { q: "1. She's not the best dancer. However, she likes to dance.", acceptable: ["she does like to dance"], explanation: "💡 <strong>Explanation:</strong> Present tense emphatic uses <em>does like</em>." },
+                        { q: "2. Your intuition was right. You learned English faster than anyone expected.", acceptable: ["you did learn english faster than anyone expected"], explanation: "💡 <strong>Explanation:</strong> Past tense emphatic uses <em>did learn</em>." },
+                        { q: "3. He may not have much time during the week, but he loves to cook on the weekend.", acceptable: ["he does love to cook on the weekend"], explanation: "💡 <strong>Explanation:</strong> Present tense emphatic uses <em>does love</em>." },
+                        { q: "4. Jane is usually pretty skeptical, but she fell for that romance scam.", acceptable: ["she did fall for that romance scam"], explanation: "💡 <strong>Explanation:</strong> Past tense emphatic uses <em>did fall</em>." },
+                        { q: "5. Phil doesn't have a lot of run-of-the-mill fears. On the other hand, he has one full-blown phobia.", acceptable: ["he does have one full-blown phobia"], explanation: "💡 <strong>Explanation:</strong> Present tense emphatic uses <em>does have</em>." },
+                        { q: "6. He really hated math, but in the end he passed the course.", acceptable: ["he did pass the course"], explanation: "💡 <strong>Explanation:</strong> Past tense emphatic uses <em>did pass</em>." },
+                        { q: "7. People say I lack creativity, but I paint every single weekend.", acceptable: ["i do paint every single weekend"], explanation: "💡 <strong>Explanation:</strong> First-person present emphatic uses <em>do paint</em>." },
+                        { q: "8. You might think she forgot our anniversary, but she remembered it perfectly.", acceptable: ["she did remember it perfectly"], explanation: "💡 <strong>Explanation:</strong> Past tense emphatic uses <em>did remember</em>." },
+                        { q: "9. He doesn't usually enjoy action movies, but he liked this one.", acceptable: ["he did like this one"], explanation: "💡 <strong>Explanation:</strong> Past tense emphatic uses <em>did like</em>." },
+                        { q: "10. They said the restaurant was closed, but it opened at 5 PM.", acceptable: ["it did open at 5 pm"], explanation: "💡 <strong>Explanation:</strong> Past tense emphatic uses <em>did open</em>." }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "unit8_lesson2",
+            name: "Unit 8 — Lesson 2: The Subjunctive",
+            desc: "Practice active, negative, continuous, and passive subjunctive forms after demand, suggest, insist, etc.",
+            exercises: [
+                {
+                    type: "writing",
+                    title: "Exercise 1 — Rewrite Using the Subjunctive",
+                    instruction: "Instruction: Rewrite each sentence using the subjunctive instead of should or must, using the prompt in parentheses.",
+                    sample: { 
+                        q: "Sample: Companies should advertise more to increase sales. (I / suggest)", 
+                        answer: "I suggest that companies advertise more to increase sales", 
+                        explanation: "💡 <strong>Why?</strong> 'should advertise' becomes base form 'advertise' after suggest." 
+                    },
+                    questions: [
+                        { q: "1. Advertising agencies should use humor in their ads. (It is important)", acceptable: ["it is important that advertising agencies use humor in their ads"], explanation: "💡 <strong>Explanation:</strong> Base form <em>use</em>." },
+                        { q: "2. Cities should tear down billboards that obstruct city views. (I / demand)", acceptable: ["i demand that cities tear down billboards that obstruct city views"], explanation: "💡 <strong>Explanation:</strong> Base form <em>tear</em>." },
+                        { q: "3. The government must regulate ads on the Internet. (It is essential)", acceptable: ["it is essential that the government regulate ads on the internet"], explanation: "💡 <strong>Explanation:</strong> Base form <em>regulate</em>." },
+                        { q: "4. Viewers should skip the ads that precede online video clips. (I / recommend)", acceptable: ["i recommend that viewers skip the ads that precede online video clips"], explanation: "💡 <strong>Explanation:</strong> Base form <em>skip</em>." },
+                        { q: "5. The advertising of harmful products must stop. (It is crucial)", acceptable: ["it is crucial that the advertising of harmful products stop"], explanation: "💡 <strong>Explanation:</strong> Base form <em>stop</em>." },
+                        { q: "6. False advertising should be treated as a serious crime. (I / propose)", acceptable: ["i propose that false advertising be treated as a serious crime"], explanation: "💡 <strong>Explanation:</strong> Passive base form <em>be treated</em>." },
+                        { q: "7. Public television should remain commercial-free. (It is vital)", acceptable: ["it is vital that public television remain commercial-free"], explanation: "💡 <strong>Explanation:</strong> Base form <em>remain</em>." }
+                    ]
+                },
+                {
+                    type: "dropdown",
+                    title: "Exercise 2 — Complete with Subjunctive Verbs",
+                    instruction: "Instruction: Select the correct subjunctive verb form to complete each sentence.",
+                    questions: [
+                        { q: "1. The return policy stipulated that customers [DROPDOWN] cash refunds for returned items.", options: ["-- select --", "be given", "are given", "were given"], ans: "be given", explanation: "💡 <strong>Explanation:</strong> Passive subjunctive requires <em>be given</em>." },
+                        { q: "2. A new guideline advises that telemarketers [DROPDOWN] from calling after 8:00 P.M.", options: ["-- select --", "be prevented", "are prevented", "were prevented"], ans: "be prevented", explanation: "💡 <strong>Explanation:</strong> Passive subjunctive requires <em>be prevented</em>." },
+                        { q: "3. It is required that an advertisement [DROPDOWN] any false information.", options: ["-- select --", "not contain", "doesn't contain", "didn't contain"], ans: "not contain", explanation: "💡 <strong>Explanation:</strong> Negative subjunctive places 'not' before the base verb: <em>not contain</em>." },
+                        { q: "4. Parents begged that companies [DROPDOWN] from advertising candy on children's TV shows.", options: ["-- select --", "remove", "removed", "removing"], ans: "remove", explanation: "💡 <strong>Explanation:</strong> Base verb form <em>remove</em>." },
+                        { q: "5. The contract clearly specifies that the station [DROPDOWN] our ads 24 hours a day.", options: ["-- select --", "broadcast", "broadcasts", "broadcasted"], ans: "broadcast", explanation: "💡 <strong>Explanation:</strong> Base form <em>broadcast</em>." },
+                        { q: "6. I would prefer that companies [DROPDOWN] me spam e-mail of any kind.", options: ["-- select --", "not send", "don't send", "didn't send"], ans: "not send", explanation: "💡 <strong>Explanation:</strong> Negative subjunctive uses <em>not send</em>." },
+                        { q: "7. We voted that those billboards blocking the town's ocean view [DROPDOWN].", options: ["-- select --", "be removed", "were removed", "are removed"], ans: "be removed", explanation: "💡 <strong>Explanation:</strong> Passive subjunctive takes <em>be removed</em>." }
+                    ]
+                },
+                {
+                    type: "mcq",
+                    title: "Exercise 3 — Choose the Correct Subjunctive Form",
+                    instruction: "Instruction: Circle/select the correct verb form following subjunctive rules.",
+                    sample: { 
+                        q: "Sample: It's important that he [CHOICE] on time.", 
+                        options: ["be", "is"], 
+                        answer: "be", 
+                        explanation: "💡 <strong>Why?</strong> Subjunctive demands the base form <em>be</em>." 
+                    },
+                    questions: [
+                        { q: "1. It's suggested that every new student [CHOICE] a language aptitude test.", options: ["take", "takes"], ans: "take", explanation: "💡 <strong>Explanation:</strong> Base form <em>take</em>." },
+                        { q: "2. It was requested that new teachers [CHOICE] at the school office an hour early.", options: ["arrive", "arrived"], ans: "arrive", explanation: "💡 <strong>Explanation:</strong> Base form <em>arrive</em>." },
+                        { q: "3. Ms. Sills demanded that no laptops [CHOICE] open during class.", options: ["be", "were"], ans: "be", explanation: "💡 <strong>Explanation:</strong> Base form <em>be</em>." },
+                        { q: "4. It's crucial that one [CHOICE] in short intense sessions.", options: ["study", "studies"], ans: "study", explanation: "💡 <strong>Explanation:</strong> Base form <em>study</em>." },
+                        { q: "5. My parents proposed that my brother [CHOICE] with music playing in his room.", options: ["not study", "didn't study"], ans: "not study", explanation: "💡 <strong>Explanation:</strong> Negative subjunctive takes <em>not study</em>." },
+                        { q: "6. Ella's supervisor will insist that no one [CHOICE] late to tomorrow's lunch.", options: ["be", "is"], ans: "be", explanation: "💡 <strong>Explanation:</strong> Base form <em>be</em>." },
+                        { q: "7. They suggested that we [CHOICE] an opportunity to apply for next year's class.", options: ["be given", "were given"], ans: "be given", explanation: "💡 <strong>Explanation:</strong> Passive subjunctive takes <em>be given</em>." },
+                        { q: "8. They ask that guests [CHOICE] somewhat formal clothes when they enter.", options: ["wear", "be wearing"], ans: "wear", explanation: "💡 <strong>Explanation:</strong> Standard subjunctive takes base form <em>wear</em>." }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    let activeUnitData = null;
+
+    function initMainMenu() {
+        const grid = document.getElementById('unit-cards-grid');
+        grid.innerHTML = '';
+
+        grammarDatabase.forEach((unit, idx) => {
+            const card = document.createElement('div');
+            card.className = 'selection-card';
+            card.onclick = () => loadUnitExercises(idx);
+            card.innerHTML = `
+                <div class="card-icon-wrap">📚</div>
+                <h3>${unit.name}</h3>
+                <p>${unit.desc}</p>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function navigateTo(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+        document.getElementById(`screen-${screenId}`).classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function loadUnitExercises(unitIdx) {
+        const unit = grammarDatabase[unitIdx];
+        activeUnitData = unit;
+        document.getElementById('exercise-screen-title').innerText = unit.name;
+        
+        const banner = document.getElementById('score-banner');
+        banner.style.display = 'none';
+        banner.innerText = '';
+
+        const container = document.getElementById('exercise-questions-container');
+        container.innerHTML = '';
+
+        let globalQCounter = 0;
+
+        unit.exercises.forEach((exe) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            const titleEl = document.createElement('h4');
+            titleEl.style.color = 'var(--primary)';
+            titleEl.style.margin = '0 0 6px 0';
+            titleEl.style.fontSize = '16px';
+            titleEl.innerText = exe.title;
+            card.appendChild(titleEl);
+
+            const instr = document.createElement('p');
+            instr.style.fontWeight = '700';
+            instr.style.color = 'var(--text-light)';
+            instr.style.fontSize = '13px';
+            instr.style.marginTop = '0';
+            instr.innerText = exe.instruction;
+            card.appendChild(instr);
+
+            if (exe.sample) {
+                const sampleDiv = document.createElement('div');
+                sampleDiv.className = 'sample-box';
+                sampleDiv.innerHTML = `<strong>💡 Example:</strong><br>${exe.sample.q}<br><em>Answer:</em> <strong>${exe.sample.answer}</strong><br>${exe.sample.explanation}`;
+                card.appendChild(sampleDiv);
+            }
+
+            exe.questions.forEach((qObj) => {
+                globalQCounter++;
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question-text';
+                qDiv.style.margin = '14px 0';
+                qDiv.style.borderTop = '1px solid var(--border-color)';
+                qDiv.style.paddingTop = '12px';
+
+                if (exe.type === 'writing') {
+                    qDiv.innerHTML = qObj.q + `<br><input type="text" class="exercise-input" data-type="writing" data-q-index="${globalQCounter - 1}" placeholder="Type answer here...">`;
+                } else if (exe.type === 'dropdown') {
+                    let selectHtml = `<select class="exercise-select" data-type="dropdown" data-q-index="${globalQCounter - 1}">`;
+                    qObj.options.forEach(opt => {
+                        selectHtml += `<option value="${opt}">${opt}</option>`;
+                    });
+                    selectHtml += `</select>`;
+                    qDiv.innerHTML = qObj.q.replace('[DROPDOWN]', selectHtml);
+                } else if (exe.type === 'mcq') {
+                    let renderedQ = qObj.q.replace('[CHOICE]', '_____');
+                    qDiv.innerHTML = renderedQ;
+                    
+                    const optionsContainer = document.createElement('div');
+                    optionsContainer.className = 'mcq-options';
+                    optionsContainer.dataset.type = 'mcq';
+                    optionsContainer.dataset.qIndex = globalQCounter - 1;
+                    
+                    qObj.options.forEach(opt => {
+                        const optBtn = document.createElement('button');
+                        optBtn.className = 'mcq-option-btn';
+                        optBtn.innerText = opt;
+                        optBtn.type = 'button';
+                        optBtn.onclick = () => {
+                            optionsContainer.querySelectorAll('.mcq-option-btn').forEach(b => b.classList.remove('selected'));
+                            optBtn.classList.add('selected');
+                            optionsContainer.dataset.selectedVal = opt;
+                        };
+                        optionsContainer.appendChild(optBtn);
+                    });
+                    qDiv.appendChild(optionsContainer);
+                }
+
+                const fb = document.createElement('div');
+                fb.id = `fb_q_${globalQCounter - 1}`;
+                fb.className = 'feedback-text';
+                qDiv.appendChild(fb);
+
+                card.appendChild(qDiv);
+            });
+
+            container.appendChild(card);
+        });
+
+        const submitWrap = document.createElement('div');
+        submitWrap.className = 'submit-btn-wrap';
+        submitWrap.innerHTML = `<button class="btn-primary" onclick="submitUnitAnswers()">Submit Unit Review 🎯</button>`;
+        container.appendChild(submitWrap);
+
+        navigateTo('exercise');
+    }
+
+    function submitUnitAnswers() {
+        if (!activeUnitData) return;
+
+        let totalQuestions = 0;
+        let score = 0;
+        let globalIdx = 0;
+
+        activeUnitData.exercises.forEach(exe => {
+            exe.questions.forEach(qObj => {
+                totalQuestions++;
+                const fbEl = document.getElementById(`fb_q_${globalIdx}`);
+                
+                if (exe.type === 'writing') {
+                    const inputEl = document.querySelector(`input[data-q-index="${globalIdx}"]`);
+                    const userVal = inputEl ? inputEl.value : "";
+                    
+                    let cleanedUserVal = userVal.trim().toLowerCase();
+                    cleanedUserVal = cleanedUserVal.replace(/[.?!]+$/, '').trim();
+
+                    let isMatch = false;
+                    for (let acc of qObj.acceptable) {
+                        let cleanedAcc = acc.trim().toLowerCase();
+                        cleanedAcc = cleanedAcc.replace(/[.?!]+$/, '').trim();
+                        if (cleanedUserVal === cleanedAcc) {
+                            isMatch = true;
+                            break;
+                        }
+                    }
+
+                    if (isMatch) {
+                        score++;
+                        fbEl.innerHTML = `✓ Correct! ${qObj.explanation}`;
+                        fbEl.className = "feedback-text correct-fb";
+                    } else {
+                        fbEl.innerHTML = `✗ Incorrect. Correct answer: <strong>${qObj.acceptable[0]}</strong>. ${qObj.explanation}`;
+                        fbEl.className = "feedback-text incorrect-fb";
+                    }
+                } else if (exe.type === 'dropdown') {
+                    const selectEl = document.querySelector(`select[data-q-index="${globalIdx}"]`);
+                    const userVal = selectEl ? selectEl.value : "";
+
+                    if (userVal === qObj.ans) {
+                        score++;
+                        fbEl.innerHTML = `✓ Correct! ${qObj.explanation}`;
+                        fbEl.className = "feedback-text correct-fb";
+                    } else {
+                        fbEl.innerHTML = `✗ Incorrect. Correct answer: <strong>${qObj.ans}</strong>. ${qObj.explanation}`;
+                        fbEl.className = "feedback-text incorrect-fb";
+                    }
+                } else if (exe.type === 'mcq') {
+                    const containerEl = document.querySelector(`div.mcq-options[data-q-index="${globalIdx}"]`);
+                    const userVal = containerEl ? containerEl.dataset.selectedVal : null;
+                    const buttons = containerEl ? containerEl.querySelectorAll('.mcq-option-btn') : [];
+
+                    buttons.forEach(b => {
+                        if (b.innerText === qObj.ans) {
+                            b.classList.add('selected-correct');
+                        } else if (b.innerText === userVal && userVal !== qObj.ans) {
+                            b.classList.add('selected-incorrect');
+                        }
+                    });
+
+                    if (userVal === qObj.ans) {
+                        score++;
+                        fbEl.innerHTML = `✓ Correct! ${qObj.explanation}`;
+                        fbEl.className = "feedback-text correct-fb";
+                    } else {
+                        fbEl.innerHTML = `✗ Incorrect. Correct answer: <strong>${qObj.ans}</strong>. ${qObj.explanation}`;
+                        fbEl.className = "feedback-text incorrect-fb";
+                    }
+                }
+
+                globalIdx++;
+            });
+        });
+
+        const banner = document.getElementById('score-banner');
+        banner.style.display = 'block';
+        banner.innerHTML = `✨ You got ${score} / ${totalQuestions}! ✨`;
+
+        document.querySelector('.exercise-wrapper').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.onload = initMainMenu;
+</script>
+
+</body>
+</html>
